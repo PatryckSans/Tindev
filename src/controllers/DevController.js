@@ -2,6 +2,13 @@ const axios = require('axios');
 const Dev = require('../models/Dev');
 
 module.exports = {
+    
+    async remove(req, res){
+        const { devId } = req.params;
+        await Dev.remove({ _id: devId });
+        res.status(204);
+        return res.send();
+    },
     async index(req, res){
         const { user } = req.headers;
         const loggedDev = await Dev.findById(user);
